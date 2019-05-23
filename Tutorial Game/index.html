@@ -42,10 +42,10 @@ function preload ()
 {
   this.load.image('snow', 'assets/snowbackground.png');
   this.load.image('platform', 'assets/platform.jpg');
-  // this.load.image('fire', 'assets/fire.png');
+  this.load.image('platform2', 'assets/platform2.jpg');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
-  this.load.spritesheet('player', 'assets/dude.png', {frameWidth: 32, frameHeight: 40});
+  this.load.spritesheet('player', 'assets/dude.png', {frameWidth: 32, frameHeight: 48});
 }
 
 function collectStar (player, star)
@@ -87,8 +87,7 @@ function hitBomb (player, bomb)
 function create ()
 {
   this.add.image(400, 300, 'snow');
-  this.add.image(100, 300, 'platform');
-  // this.add.image(200, 200, 'fire');
+  this.add.image(100, 275, 'platform');
   player = this.physics.add.sprite(100, 450, 'player');
 
 player.setBounce(0.2);
@@ -116,13 +115,10 @@ this.anims.create({
 });
 
   platforms = this.physics.add.staticGroup();
-  platforms.create(150, 590, 'platform').setScale(1.5).refreshBody();
-  platforms.create(100, 300, 'platform');
-  platforms.create(500, 430, 'platform');
-  platforms.create(695, 220, 'platform');
-  platforms.create(651, 570, 'platform');
-  platforms.create(428, 570, 'platform');
-  platforms.create(874, 570, 'platform');
+  platforms.create(200, 605, 'platform2').setScale(1.5).refreshBody();
+  platforms.create(100, 275, 'platform');
+  platforms.create(500, 425, 'platform');
+  platforms.create(695, 200, 'platform');
 
 this.physics.add.collider(player, platforms);
 stars = this.physics.add.group({
@@ -133,7 +129,7 @@ stars = this.physics.add.group({
 
 stars.children.iterate(function (child) {
 
-    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8,));
     child.setScale(.85,.85);
 });
 this.physics.add.collider(stars, platforms);
